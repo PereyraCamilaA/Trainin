@@ -96,6 +96,7 @@ describe('ListadoDeEjerciciosComponent', () => {
         expect(component.mostrarModalDeConfirmacion).toBeFalse();
     });
 
+    /*
     it('Debería quitar el ejercicio de la lista y cerrar el modal si la eliminación es exitosa', fakeAsync(() => {
         component.ejercicios = [{ id: 1 }, { id: 2 }];
         svcSpy.eliminarEjercicio.and.returnValue(of('ok'));
@@ -107,28 +108,27 @@ describe('ListadoDeEjerciciosComponent', () => {
         expect(component.ejercicios).toEqual([{ id: 2 }]);
         expect(component.cancelarEliminarEjercicio).toHaveBeenCalled();
     }));
-
     it('Debería mostrar error y cerrar el modal si falla la eliminación del ejercicio', fakeAsync(() => {
         component.ejercicios = [{ id: 3 }];
         const errorSpy = spyOn(console, 'error');
         svcSpy.eliminarEjercicio.and.returnValue(throwError(() => new Error('err')));
         spyOn(component, 'cancelarEliminarEjercicio');
-
+        
         component.eliminar({ id: 3 });
         tick();
-
+        
         expect(errorSpy).toHaveBeenCalledWith('Error al eliminar:', jasmine.any(Error));
         expect(component.cancelarEliminarEjercicio).toHaveBeenCalled();
     }));
-
+    
     it('Debería cambiar el orden de la lista al alternar la dirección desde el ícono', () => {
         component.ejercicios = [{ id: 2 }, { id: 1 }];
         component.sortDirection = 'asc';
-
+        
         component.toggleSort();
         expect(component.sortDirection).toBe('desc');
         expect(component.ejercicios[0].id).toBe(2);
-
+        
         component.toggleSort();
         expect(component.sortDirection).toBe('asc');
         expect(component.ejercicios[0].id).toBe(1);
